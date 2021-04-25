@@ -62,11 +62,11 @@
             </section>
 
             <!-- Contacts -->
-            <section>
+            <section class="contact-list-wrap">
                 <ul class="contacts-list flex-list">
                     <li class="contact" v-for="contact in contacts">
                         <a class="img-wrap" href="#"><img :src="'./img/avatar' + contact.avatar + '.jpg'" alt="contact-avatar"></a>
-                        <a href="#"><h3>{{contact.name}}</h3></a>
+                        <h3>{{contact.name}}</h3>
                     </li>
                 </ul>
             </section>

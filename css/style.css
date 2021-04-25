@@ -25,9 +25,10 @@ body{
     width: 80%;
     height: 95%;
     background-color: #fff;
+    box-shadow: 0 0 10px 5px rgba(0,0,0, 0.1);
 }
 
-
+/********************/
 /* List */
 .flex-list{
     display: flex;
@@ -35,14 +36,21 @@ body{
     align-items: center;
 }
 
-
+/********************/
 /* Images */
 .img-wrap{
     width: 50px;
+    min-width: 50px;
     height:50px;
     border-radius: 50%;
     overflow: hidden;
     margin-right: 15px;
+    border: 1px solid transparent;
+    transition: border-color 0.5s;
+}
+
+.img-wrap:hover{
+    border-color: #25D366;
 }
 
 .img-wrap img{
@@ -50,7 +58,7 @@ body{
     height: 100%;
 }
 
-
+/********************/
 /* Text */
 .gray-text{
     color: #6b7376;
@@ -87,15 +95,21 @@ i{
 .header .header-right li i{
     font-size: 20px;
     color: #b1b1b1;
+    transition: transform 0.4s;
+}
+
+.header .header-right li i:hover{
+    transform: scale(1.1);
 }
 
 /**************************************************/
 /* CONTACTS BAR */
 .contacts-bar{
     flex-basis: 35%;
+    overflow: hidden;
 }
 
-
+/********************/
 /* Notification bar */
 .notification-bar{
     background: #8edafc;
@@ -110,18 +124,35 @@ i{
     align-items: center;
     background: #f2fbff;
     cursor: pointer;
+    transition: background 0.5s;
 }
 
 .notification-bar .img-wrap i{
     color: #8edafc;
     font-size: 20px;
+    transition: color 0.5s;
 }
 
 .notification-bar a{
     text-decoration: underline;
+    transition: text-decoration 0.3s,
+                color 0.3s;
 }
 
+.notification-bar a:hover{
+    color: #128C7E;
+    text-decoration-color: #128C7E;
+}
 
+.notification-bar .img-wrap:hover{
+    background: #128C7E;
+}
+
+.notification-bar .img-wrap:hover i{
+    color: #25D366;
+}
+
+/********************/
 /* Find new chat */
 .find-chat-wrap{
     background: #f8f8f8;
@@ -150,7 +181,9 @@ i{
 }
 
 .find-chat-wrap button:hover,
-.find-chat-wrap .find-chat:hover{
+.find-chat-wrap .find-chat:hover
+.find-chat-wrap button:focus,
+.find-chat-wrap .find-chat:focus{
     background-color: rgba(0, 0, 0, 0.05);
 }
 
@@ -165,12 +198,16 @@ i{
     font-weight: bold;
 }
 
-
+/********************/
 /* Contacts */
+.contact-list-wrap{
+    height: calc(100% - 210px);
+}
+
 .contacts-list{
+    height: 100%;
     flex-direction: column;
     align-items: flex-start;
-    max-height: 700px;
     overflow: auto;
 }
 
@@ -180,10 +217,16 @@ i{
     align-items: center;
     padding: 10px 0 10px 20px;
     border-bottom: 1px solid #f5f5f5;
+    transition: background 0.4s;
+    cursor: pointer;
 }
 
 .contacts-list .contact:last-child{
     border-bottom: none;
+}
+
+.contacts-list .contact:hover{
+    background: rgba(0, 0, 0, 0.1);
 }
 
 .contacts-list .contact a{
@@ -193,6 +236,7 @@ i{
 
 .contacts-list .contact .img-wrap{
     width: 60px;
+    min-width: 60px;
     height: 60px;
 }
 
@@ -206,7 +250,7 @@ i{
     border-left: 1px solid #d6d6d6;
 }
 
-
+/********************/
 /* Main */
 .chat-wrap main{
     flex-grow: 1;
@@ -258,7 +302,7 @@ i{
     color: #b6b9bb;
 }
 
-
+/********************/
 /* Footer */
 .chat-wrap footer{
     display: flex;
@@ -271,6 +315,11 @@ i{
 .chat-wrap footer i{
     color: #6b7376;
     font-size: 25px;
+    transition: transform 0.4s;
+}
+
+.chat-wrap footer i:hover{
+    transform: scale(1.1);
 }
 
 .chat-wrap footer input{
@@ -288,6 +337,61 @@ i{
     color: #999;
 }
 
-.chat-wrap footer input:hover{
+.chat-wrap footer input:hover,
+.chat-wrap footer input:focus{
     box-shadow: 0 0 2px rgba(0,0,0, 0.1);
+}
+
+/**************************************************/
+/**************************************************/
+/* RESPONSIVE */
+
+/* < 1200px */
+@media screen and (max-width: 1200px) {
+    /* General styles */
+    h3{
+        font-size: 17px;
+    }
+
+    h4{
+        font-size: 15px;
+    }
+
+    /* Layout */
+    .container{
+        width: 95%;
+    }
+    
+    /* Text */
+    .gray-text{
+        font-size: 14px;
+    }
+
+    /* Contacts bar - Chat / Header */
+    .header .header-right li i {
+        font-size: 17px;
+    }
+
+    /* Find new chat */
+    .find-chat-wrap button{
+        padding: 0 27px;
+    }
+
+    /* Contacts list */
+    .contacts-list {
+        max-height: 570px;
+    }
+
+    /* Footer */
+    .chat-wrap footer i {
+        font-size: 22px;
+    }
+}
+
+/* < 1000px */
+@media screen and (max-width: 1000px) {
+    /* Contacts list */
+    .contacts-list {
+        max-height: 495px;
+    }
 }
