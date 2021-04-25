@@ -64,7 +64,10 @@
             <!-- Contacts -->
             <section class="contact-list-wrap">
                 <ul class="contacts-list flex-list">
-                    <li class="contact" v-for="contact in contacts">
+                    <li class="contact" 
+                        v-for="(contact, index) in contacts"
+                        @click="getContact(index)"
+                    >
                         <a class="img-wrap" href="#"><img :src="'./img/avatar' + contact.avatar + '.jpg'" alt="contact-avatar"></a>
                         <h3>{{contact.name}}</h3>
                     </li>
@@ -80,10 +83,10 @@
                 <!-- Left -->
                 <ul class="header-left flex-list">
                     <li class="img-wrap">
-                        <a href="#"><img src="./img/avatar_1.jpg" alt="contact-avatar"></a>
+                        <a href="#"><img :src="'./img/avatar' + currentAvatar + '.jpg'" alt="contact-avatar"></a>
                     </li>    
                     <li>
-                        <a href="#"><h3>Michele</h3></a>
+                        <a href="#"><h3>{{currentName}}</h3></a>
                         <a href="#"><div class="last-connection gray-text">Ultimo acceso oggi alle 10.35</div></a>
                     </li>
                 </ul>

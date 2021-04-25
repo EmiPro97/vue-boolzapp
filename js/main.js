@@ -86,5 +86,13 @@ const app = new Vue ({
                 ],
             },
         ],
+        currentName: 'Michele',
+        currentAvatar: '_1',
+    },
+    methods: {
+        getContact(index) {
+            this.currentName = this.contacts[index].name;
+            this.currentAvatar = this.contacts[index].avatar;
+        },
     },
 });
