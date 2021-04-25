@@ -12,6 +12,9 @@
     <!-- Icons -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' integrity='sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==' crossorigin='anonymous'/>
     
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://web.whatsapp.com/favicon-64x64.ico">
+
     <!-- Main css link -->
     <link rel="stylesheet" href="./css/style.css">
     
@@ -25,43 +28,103 @@
     <div id="root" class="container">
         <!-- CONTACTS BAR -->
         <div class="contacts-bar">
+
             <!-- Bar-header -->
-            <div class="header">
+            <section class="header">
                 <!-- Left -->
-                <ul class="header-left">
-                    <li class="img-wrap"><img src="./img/avatar_io.jpg" alt="my-avatar"></li>    
-                    <li><h3>Emiliano</h3></li>
+                <ul class="header-left flex-list">
+                    <li class="img-wrap"><a href="#"><img src="./img/avatar_io.jpg" alt="my-avatar"></a></li>    
+                    <li><a href="#"><h3>Emiliano</h3></a></li>
                 </ul>
                 <!-- Right -->
-                <ul class="header-right">
+                <ul class="header-right flex-list">
                     <li><i class="fas fa-circle-notch"></i></li>
                     <li><i class="fas fa-comment-alt"></i></li>
                     <li><i class="fas fa-ellipsis-v"></i></li>
                 </ul>
-            </div>
+            </section>
+
+            <!-- Notification-bar -->
+            <section class="notification-bar">
+                <div class="img-wrap">
+                    <i class="fas fa-bell-slash"></i>
+                </div>
+                <div class="active-noti-wrap">
+                    <h4>Ricevi notifiche di nuovi messaggi</h4>
+                    <a class="gray-text" href="#">Attiva notifiche desktop</a>
+                </div>
+            </section>
+
+            <!-- Find new chat -->
+            <section class="find-chat-wrap">
+                <button><i class="fas fa-search"></i></button>
+                <input type="text" class="find-chat" placeholder="Cerca o inizia una nuova chat">
+            </section>
+
+            <!-- Contacts -->
+            <section>
+                <ul class="contacts-list flex-list">
+                    <li class="contact" v-for="contact in contacts">
+                        <a class="img-wrap" href="#"><img :src="'./img/avatar' + contact.avatar + '.jpg'" alt="contact-avatar"></a>
+                        <a href="#"><h3>{{contact.name}}</h3></a>
+                    </li>
+                </ul>
+            </section>
         </div>
+
         <!-- CHAT -->
         <div class="chat-wrap">
+
             <!-- Chat-header -->
-            <div class="header">
+            <header class="header">
                 <!-- Left -->
-                <ul class="header-left">
-                    <li class="img-wrap"><img src="./img/avatar_1.jpg" alt="contact-avatar"></li>    
+                <ul class="header-left flex-list">
+                    <li class="img-wrap">
+                        <a href="#"><img src="./img/avatar_1.jpg" alt="contact-avatar"></a>
+                    </li>    
                     <li>
-                        <h3>Michele</h3>
-                        <div class="last-connection">Ultimo acceso oggi alle 10.35</div>
+                        <a href="#"><h3>Michele</h3></a>
+                        <a href="#"><div class="last-connection gray-text">Ultimo acceso oggi alle 10.35</div></a>
                     </li>
                 </ul>
                 <!-- Right -->
-                <ul class="header-right">
+                <ul class="header-right flex-list">
                     <li><i class="fas fa-search"></i></li>
                     <li><i class="fas fa-paperclip"></i></li>
                     <li><i class="fas fa-ellipsis-v"></i></li>
                 </ul>
-            </div>
-        </div>
+            </header>
 
+            <!-- Chat-main -->
+            <main>
+                <div class="main-scrollable">
+                    <!-- Sent -->
+                    <div class="sent-wrap">
+                        <div class="sent">
+                            Messaggio inviato
+                            <span class="info-time">10/01/2021 15:50:00</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Received -->
+                    <div class="received-wrap">
+                        <div class="received">
+                            Messaggio ricevuto
+                            <span class="info-time">10/01/2021 15:50:00</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Footer -->
+            <footer>
+                <i class="far fa-smile"></i>
+                <input type="text" placeholder="Scrivi un messaggio">
+                <i class="fas fa-microphone"></i>
+            </footer>
+        </div>
     </div>
+
     <!-- JS -->
     <script src="./js/main.js"></script>
 </body>
