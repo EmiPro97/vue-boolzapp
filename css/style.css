@@ -182,7 +182,7 @@ i{
 }
 
 .find-chat-wrap button:hover,
-.find-chat-wrap .find-chat:hover
+.find-chat-wrap .find-chat:hover,
 .find-chat-wrap button:focus,
 .find-chat-wrap .find-chat:focus{
     background-color: rgba(0, 0, 0, 0.05);

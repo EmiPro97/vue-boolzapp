@@ -66,7 +66,8 @@
                 <ul class="contacts-list flex-list">
                     <li class="contact" 
                         v-for="(contact, index) in contacts"
-                        @click="getContact(index)"
+                        :key="index"
+                        @click="getContactID(index)"
                     >
                         <a class="img-wrap" href="#"><img :src="'./img/avatar' + contact.avatar + '.jpg'" alt="contact-avatar"></a>
                         <h3>{{contact.name}}</h3>
@@ -83,10 +84,10 @@
                 <!-- Left -->
                 <ul class="header-left flex-list">
                     <li class="img-wrap">
-                        <a href="#"><img :src="'./img/avatar' + currentAvatar + '.jpg'" alt="contact-avatar"></a>
+                        <a href="#"><img :src="'./img/avatar' + this.contacts[this.currentIndex].avatar + '.jpg'" alt="contact-avatar"></a>
                     </li>    
                     <li>
-                        <a href="#"><h3>{{currentName}}</h3></a>
+                        <a href="#"><h3>{{this.contacts[currentIndex].name}}</h3></a>
                         <a href="#"><div class="last-connection gray-text">Ultimo acceso oggi alle 10.35</div></a>
                     </li>
                 </ul>
@@ -101,19 +102,10 @@
             <!-- Chat-main -->
             <main>
                 <div class="main-scrollable">
-                    <!-- Sent -->
-                    <div class="sent-wrap">
-                        <div class="sent">
-                            Messaggio inviato
-                            <span class="info-time">10/01/2021 15:50:00</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Received -->
-                    <div class="received-wrap">
-                        <div class="received">
-                            Messaggio ricevuto
-                            <span class="info-time">10/01/2021 15:50:00</span>
+                    <div :class="element.status + '-wrap'" v-for="element in this.contacts[this.currentIndex].messages">
+                        <div :class="element.status">
+                            {{element.message}}
+                            <span class="info-time">{{element.date}}</span>
                         </div>
                     </div>
                 </div>
@@ -129,6 +121,10 @@
     </div>
 
     <!-- JS -->
+    <!-- DayJS -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.4/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.4/plugin/customParseFormat.js"></script>
+    <!-- Main JS -->
     <script src="./js/main.js"></script>
 </body>
 </html>
