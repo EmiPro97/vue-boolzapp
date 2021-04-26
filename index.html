@@ -88,7 +88,7 @@
                     </li>    
                     <li>
                         <a href="#"><h3>{{this.contacts[currentIndex].name}}</h3></a>
-                        <a href="#"><div class="last-connection gray-text">Ultimo acceso oggi alle 10.35</div></a>
+                        <a v-if="this.contacts[currentIndex].lastConnection" href="#"><div class="last-connection gray-text">Ultimo acceso oggi alle {{this.contacts[currentIndex].lastConnection}}</div></a>
                     </li>
                 </ul>
                 <!-- Right -->
@@ -102,7 +102,10 @@
             <!-- Chat-main -->
             <main>
                 <div class="main-scrollable">
-                    <div :class="element.status + '-wrap'" v-for="element in this.contacts[this.currentIndex].messages">
+                    <div :class="element.status + '-wrap'" 
+                        v-for="(element, index) in this.contacts[this.currentIndex].messages"
+                        :key="index"
+                    >
                         <div :class="element.status">
                             {{element.message}}
                             <span class="info-time">{{element.date}}</span>
@@ -114,7 +117,10 @@
             <!-- Footer -->
             <footer>
                 <i class="far fa-smile"></i>
-                <input type="text" placeholder="Scrivi un messaggio">
+                <input type="text" placeholder="Scrivi un messaggio"              
+                    v-model="inputChatText"
+                    @keyup.enter="submitInputText"
+                >
                 <i class="fas fa-microphone"></i>
             </footer>
         </div>

@@ -1,3 +1,7 @@
+// DayJS
+dayjs.extend(dayjs_plugin_customParseFormat);
+
+// VueJS
 const app = new Vue ({
     el: '#root',
     data: {
@@ -87,10 +91,37 @@ const app = new Vue ({
             },
         ],
         currentIndex: '0',
+        inputChatText: '',
     },
     methods: {
         getContactID(index) {
             this.currentIndex = index;
+        },
+        submitInputText() {
+            // Validation
+            if (this.inputChatText.trim() != '') {
+                // Adding the new object to the existing main array, with the new message from the input
+                let newMessage = {
+                    date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                    message: this.inputChatText,
+                    status: 'sent',
+                };
+                // Pushing the new oject in the main array
+                this.contacts[this.currentIndex].messages.push(newMessage);
+                // After 1 sec a new object with the answer will be pushed in the main array
+                setTimeout(() => {
+                    let newAnswer = {
+                        date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                        message: 'Ok',
+                        status: 'received',
+                    };
+                    this.contacts[this.currentIndex].messages.push(newAnswer);
+                    // let lastConnection = dayjs().format('HH.mm');
+                    this.contacts[this.currentIndex].lastConnection = dayjs().format('HH.mm');
+                }, 1000);
+            }
+            // Reset
+            this.inputChatText = '';
         },
     },
 });
