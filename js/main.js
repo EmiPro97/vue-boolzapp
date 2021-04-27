@@ -89,9 +89,98 @@ const app = new Vue ({
                     }
                 ],
             },
+            {
+                name: 'Lorenzo',
+                avatar: '_2',
+                visible: true,
+                messages: [
+                    {
+                        date: '28/04/2021 16:30:55',
+                        message: 'Sei riusciuto a finire l\'esercizio?',
+                        status: 'sent'
+                    },
+                    {
+                        date: '28/04/2021 16:50:00',
+                        message: 'Io ci sto ancora lavorando',
+                        status: 'sent'
+                    },
+                    {
+                        date: '28/04/2021 16:55:22',
+                        message: 'Con qualche difficoltà ma alla fine ce l\'ho fatta',
+                        status: 'received'
+                    }
+                ],
+            },
+            {
+                name: 'Giacomo',
+                avatar: '_1',
+                visible: true,
+                messages: [
+                    {
+                        date: '28/04/2021 20:30:30',
+                        message: 'Hai dato da mangiare al gatto?',
+                        status: 'sent'
+                    },
+                    {
+                        date: '28/04/2021 20:31:22',
+                        message: 'Cambiagli anche l\'acqua per favore',
+                        status: 'sent'
+                    },
+                    {
+                        date: '28/04/2021 21:05:11',
+                        message: 'Tutto fatto!',
+                        status: 'received'
+                    }
+                ],
+            },
+            {
+                name: 'Giorgio',
+                avatar: '_3',
+                visible: true,
+                messages: [
+                    {
+                        date: '26/04/2021 15:40:21',
+                        message: 'Sei andato in palestra?',
+                        status: 'sent'
+                    },
+                    {
+                        date: '26/04/2021 15:50:00',
+                        message: 'Più tardi ti raggiungo',
+                        status: 'sent'
+                    },
+                    {
+                        date: '26/04/2021 16:15:22',
+                        message: 'Ok, perfetto, a dopo!',
+                        status: 'received'
+                    }
+                ],
+            },
+            {
+                name: 'Roberta',
+                avatar: '_4',
+                visible: true,
+                messages: [
+                    {
+                        date: '27/04/2021 19:31:55',
+                        message: 'Hai fatto la spesa?',
+                        status: 'sent'
+                    },
+                    {
+                        date: '27/04/2021 19:32:30',
+                        message: 'Ricordati anche di prendere il pane',
+                        status: 'sent'
+                    },
+                    {
+                        date: '27/04/2021 19:35:22',
+                        message: 'Spesa fatta e pane comprato!',
+                        status: 'received'
+                    }
+                ],
+            },
         ],
         currentIndex: '0',
         inputChatText: '',
+        findContactName: '',
     },
     methods: {
         getContactID(index) {
@@ -116,12 +205,21 @@ const app = new Vue ({
                         status: 'received',
                     };
                     this.contacts[this.currentIndex].messages.push(newAnswer);
-                    // let lastConnection = dayjs().format('HH.mm');
+                    // Get last connection time == last answer message time
                     this.contacts[this.currentIndex].lastConnection = dayjs().format('HH.mm');
                 }, 1000);
             }
             // Reset
             this.inputChatText = '';
+        },
+        findContact() {
+            this.contacts.forEach((element) => {
+                if (!element.name.toLowerCase().includes(this.findContactName.toLowerCase())) {
+                    element.visible = false;
+                }else {
+                    element.visible = true;
+                }
+            });
         },
     },
 });

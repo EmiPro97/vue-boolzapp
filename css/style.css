@@ -230,6 +230,10 @@ i{
     background: rgba(0, 0, 0, 0.1);
 }
 
+.contacts-list .contact.active{  /*Managed in VueJS*/
+    background: rgba(0, 0, 0, 0.1);
+}
+
 .contacts-list .contact a{
     text-decoration: none;
     color: inherit;

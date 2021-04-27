@@ -58,7 +58,10 @@
             <!-- Find new chat -->
             <section class="find-chat-wrap">
                 <button><i class="fas fa-search"></i></button>
-                <input type="text" class="find-chat" placeholder="Cerca o inizia una nuova chat">
+                <input type="text" class="find-chat" placeholder="Cerca o inizia una nuova chat"
+                    v-model="findContactName"
+                    @keyup="findContact"
+                >
             </section>
 
             <!-- Contacts -->
@@ -68,6 +71,8 @@
                         v-for="(contact, index) in contacts"
                         :key="index"
                         @click="getContactID(index)"
+                        :class="{active: index == currentIndex}"
+                        v-show="contact.visible"
                     >
                         <a class="img-wrap" href="#"><img :src="'./img/avatar' + contact.avatar + '.jpg'" alt="contact-avatar"></a>
                         <h3>{{contact.name}}</h3>
