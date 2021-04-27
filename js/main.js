@@ -181,6 +181,7 @@ const app = new Vue ({
         currentIndex: '0',
         inputChatText: '',
         findContactName: '',
+        customAnswer: '',
     },
     methods: {
         getContactID(index) {
@@ -197,19 +198,22 @@ const app = new Vue ({
                 };
                 // Pushing the new oject in the main array
                 this.contacts[this.currentIndex].messages.push(newMessage);
-                // After 1 sec a new object with the answer will be pushed in the main array
-                setTimeout(() => {
-                    let newAnswer = {
-                        date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
-                        message: 'Ok',
-                        status: 'received',
-                    };
-                    this.contacts[this.currentIndex].messages.push(newAnswer);
-                    // Get last connection time == last answer message time
-                    this.contacts[this.currentIndex].lastConnection = dayjs().format('HH.mm');
-                    this.scrollToEnd();
-                }, 1000);
                 this.scrollToEnd();
+                this.customAnswers();
+                if (this.customAnswer != ''){   //if necessary to receive no answer
+                    // After 1 sec a new object with the answer will be pushed in the main array
+                    setTimeout(() => {
+                        let newAnswer = {
+                            date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                            message: this.customAnswer,
+                            status: 'received',
+                        };
+                        this.contacts[this.currentIndex].messages.push(newAnswer);
+                        // Get last connection time == last answer message time
+                        this.contacts[this.currentIndex].lastConnection = dayjs().format('HH.mm');
+                        this.scrollToEnd();
+                    }, 1000);
+                }
             }
             // Reset
             this.inputChatText = '';
@@ -227,6 +231,31 @@ const app = new Vue ({
             setTimeout(() => {
                 this.$refs.scrollToEnd.scrollTop = this.$refs.scrollToEnd.scrollHeight;
             },5);
+        },
+        customAnswers() {
+            let lastMessage = this.contacts[this.currentIndex].messages[this.contacts[this.currentIndex].messages.length - 1].message;
+            switch(lastMessage.toLowerCase().trim()) {
+                case 'come va?':
+                case 'come stai?':
+                    this.customAnswer = 'Tutto bene, grazie!';
+                    break;
+                case 'ciao':
+                    this.customAnswer = 'Ciao!';
+                    break;
+                case 'vuoi uscire?':
+                case 'vuoi andare al cinema?':
+                case 'vuoi fare una passeggiata?':
+                    this.customAnswer = 'Si, perchè no! Ci vediamo alle 20?';
+                    break;
+                case 'va bene':
+                    this.customAnswer = 'A più tardi allora :D';
+                    break;s
+                case 'a dopo':
+                    this.customAnswer = '';
+                    break;
+                default:
+                    this.customAnswer = 'Ok';
+            }
         },
     },
 });
