@@ -106,7 +106,7 @@
 
             <!-- Chat-main -->
             <main>
-                <div class="main-scrollable">
+                <div class="main-scrollable" ref="scrollToEnd">
                     <div :class="element.status + '-wrap'" 
                         v-for="(element, index) in this.contacts[this.currentIndex].messages"
                         :key="index"

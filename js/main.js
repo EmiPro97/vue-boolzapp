@@ -207,7 +207,9 @@ const app = new Vue ({
                     this.contacts[this.currentIndex].messages.push(newAnswer);
                     // Get last connection time == last answer message time
                     this.contacts[this.currentIndex].lastConnection = dayjs().format('HH.mm');
+                    this.scrollToEnd();
                 }, 1000);
+                this.scrollToEnd();
             }
             // Reset
             this.inputChatText = '';
@@ -220,6 +222,11 @@ const app = new Vue ({
                     element.visible = true;
                 }
             });
+        },
+        scrollToEnd() {
+            setTimeout(() => {
+                this.$refs.scrollToEnd.scrollTop = this.$refs.scrollToEnd.scrollHeight;
+            },5);
         },
     },
 });
