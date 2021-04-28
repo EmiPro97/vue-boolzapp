@@ -246,6 +246,67 @@ i{
 }
 
 /**************************************************/
+/* LANDING PAGE */
+.landing-page{
+    position: relative;
+    flex-basis: 65%;
+    height: 100%;
+    background-image: url(../img/landing-page.jpg);
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+}
+
+.landing-page .layover{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.landing-page h1{
+    margin-top: 200px;
+}
+
+.landing-page h1 span{
+    display: inline-block;
+    position: relative;
+    font-size: 70px;
+    color: #25D366CC;
+}
+
+.landing-page h1 span::after{
+    content: 'Welcome to';
+    position: absolute;
+    bottom: 3px;
+    left: -5px;
+    color: #128C7EE3;
+}
+
+.landing-page h1 strong{
+    position: relative;
+    font-size: 120px;
+    color: #25D366CC;
+}
+
+.landing-page h1 strong::after{
+    content:'Boolzapp';
+    position: absolute;
+    bottom: 3px;
+    left: -7px;
+    color: #128C7EE3;
+
+}
+
+.landing-page .start-conversation{
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.76);
+    margin-top: 30px;
+}
+
+/**************************************************/
 /* CHAT */
 .chat-wrap{
     flex-basis: 65%;
@@ -259,10 +320,28 @@ i{
 /********************/
 /* Main */
 .chat-wrap main{
+    position: relative;
     flex-grow: 1;
     max-width: 100%;
     background-image: url(../img/mine.jpg);
     height: calc(100% - 140px);
+}
+
+.chat-wrap main .close-chat{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px 14px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.4s;
+}
+
+.chat-wrap main .close-chat:hover{
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
 }
 
 .chat-wrap main .main-scrollable{
@@ -354,7 +433,7 @@ i{
 /* RESPONSIVE */
 
 /* < 1200px */
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1199px) {
     /* General styles */
     h3{
         font-size: 17px;
@@ -396,9 +475,126 @@ i{
 }
 
 /* < 1000px */
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 999px) {
+     /* Header */
+     .container .header {
+        padding: 10px;
+    }
+
+    .header .header-right li {
+        margin-right: 15px;
+    }
+
     /* Contacts list */
     .contacts-list {
         max-height: 495px;
+    }
+
+    /* Main scrollable */
+    .chat-wrap main .main-scrollable {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    /* Landing page */
+    .landing-page h1 span{
+        font-size: 50px;
+    }
+
+    .landing-page h1 strong{
+        font-size: 100px;
+    }
+
+    .landing-page .start-conversation{
+        font-size: 20px;
+    }
+}
+
+/* < 750px */
+@media screen and (max-width: 749px) {
+    h4 {
+        font-size: 14px;
+    }
+
+    /* Layout */
+    .container{
+        width: 97%;
+    }
+
+    .sm-hidden{
+        display: none;
+    }
+
+    /* Landing page */
+    .landing-page h1 span::after{
+        bottom: 2px;
+        left: -4px;
+    }
+
+    .landing-page h1 span{
+        font-size: 45px;
+    }
+
+    .landing-page h1 strong{
+        font-size: 80px;
+    }
+
+    .landing-page .start-conversation{
+        font-size: 15px;
+    }
+
+    /* Chat */
+    .chat-wrap main .sent-wrap .sent .info-time,
+    .chat-wrap main .received-wrap .received .info-time{
+        font-size: 10px;
+    }
+
+    /* Footer */
+    .chat-wrap footer {
+        padding: 10px 20px;
+    }
+
+    .chat-wrap footer input {
+        margin: 0 20px;
+    }
+}
+
+/* < 550px */
+@media screen and (max-width: 549px) {
+    /* Layout */
+    .xs-hidden{
+        display: none;
+    }
+
+    /* Text */
+    .gray-text{
+        font-size: 12px;
+    }
+
+    /* Images */
+    .img-wrap{
+        margin-right: 0;
+    }
+
+    /* Contact bar */
+    .contacts-bar{
+        flex-basis: 20%;
+        min-width: 20%;
+    }
+
+    /* Notification bar */
+    .xs-justify-center{
+        justify-content: center;
+    }
+
+    /* Contact */
+    .contacts-list .contact{
+        padding-left: 0px;
+    }
+
+    /* Landing page */
+    .landing-page,
+    .chat-wrap{
+        flex-basis: 80%;
+        max-width: 80%;
     }
 }

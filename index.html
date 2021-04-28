@@ -34,30 +34,33 @@
                 <!-- Left -->
                 <ul class="header-left flex-list">
                     <li class="img-wrap"><a href="#"><img src="./img/avatar_io.jpg" alt="my-avatar"></a></li>    
-                    <li><a href="#"><h3>Emiliano</h3></a></li>
+                    <li class="xs-hidden"><a href="#"><h3>Emiliano</h3></a></li>
                 </ul>
                 <!-- Right -->
                 <ul class="header-right flex-list">
-                    <li><i class="fas fa-circle-notch"></i></li>
-                    <li><i class="fas fa-comment-alt"></i></li>
+                    <li class="sm-hidden"><i class="fas fa-circle-notch"></i></li>
+                    <li class="sm-hidden"><i class="fas fa-comment-alt"></i></li>
                     <li><i class="fas fa-ellipsis-v"></i></li>
                 </ul>
             </section>
 
             <!-- Notification-bar -->
-            <section class="notification-bar">
-                <div class="img-wrap">
-                    <i class="fas fa-bell-slash"></i>
+            <section class="notification-bar xs-justify-center">
+                <div class="img-wrap"
+                    @click="switchNotification"
+                >
+                    <i class="fas fa-bell-slash" v-show="!switchBell"></i>
+                    <i class="fas fa-bell" v-show="switchBell"></i>
                 </div>
                 <div class="active-noti-wrap">
-                    <h4>Ricevi notifiche di nuovi messaggi</h4>
-                    <a class="gray-text" href="#">Attiva notifiche desktop</a>
+                    <h4 class="xs-hidden">Ricevi notifiche di nuovi messaggi</h4>
+                    <a class="gray-text sm-hidden" href="#">Attiva notifiche desktop</a>
                 </div>
             </section>
 
             <!-- Find new chat -->
             <section class="find-chat-wrap">
-                <button><i class="fas fa-search"></i></button>
+                <button class="sm-hidden"><i class="fas fa-search"></i></button>
                 <input type="text" class="find-chat" placeholder="Cerca o inizia una nuova chat"
                     v-model="findContactName"
                     @keyup="findContact"
@@ -67,22 +70,33 @@
             <!-- Contacts -->
             <section class="contact-list-wrap">
                 <ul class="contacts-list flex-list">
-                    <li class="contact" 
+                    <li class="contact xs-justify-center" 
                         v-for="(contact, index) in contacts"
                         :key="index"
                         @click="getContactID(index)"
-                        :class="{active: index == currentIndex}"
+                        :class="{active: index == falseIndex}"
                         v-show="contact.visible"
                     >
                         <a class="img-wrap" href="#"><img :src="'./img/avatar' + contact.avatar + '.jpg'" alt="contact-avatar"></a>
-                        <h3>{{contact.name}}</h3>
+                        <h3 class="xs-hidden">{{contact.name}}</h3>
                     </li>
                 </ul>
             </section>
         </div>
 
+        <!-- LANDING PAGE-->
+        <div class="landing-page" v-show="!showChatToggle">
+            <div class="layover">
+                <h1>
+                    <span>Welcome to</span><br>
+                    <strong>Boolzapp</strong>
+                </h1>
+                <div class="start-conversation">Select a contact to start a conversation!</div>
+            </div>
+        </div>
+
         <!-- CHAT -->
-        <div class="chat-wrap">
+        <div class="chat-wrap" v-show="showChatToggle">
 
             <!-- Chat-header -->
             <header class="header">
@@ -90,7 +104,7 @@
                 <ul class="header-left flex-list">
                     <li class="img-wrap">
                         <a href="#"><img :src="'./img/avatar' + this.contacts[this.currentIndex].avatar + '.jpg'" alt="contact-avatar"></a>
-                    </li>    
+                    </li>
                     <li>
                         <a href="#"><h3>{{this.contacts[currentIndex].name}}</h3></a>
                         <a v-if="this.contacts[currentIndex].lastConnection" href="#"><div class="last-connection gray-text">Ultimo acceso oggi alle {{this.contacts[currentIndex].lastConnection}}</div></a>
@@ -106,8 +120,11 @@
 
             <!-- Chat-main -->
             <main>
+                <div class="close-chat"
+                    @click="closeChat"
+                >X</div>
                 <div class="main-scrollable" ref="scrollToEnd">
-                    <div :class="element.status + '-wrap'" 
+                    <div :class="element.status + '-wrap'"
                         v-for="(element, index) in this.contacts[this.currentIndex].messages"
                         :key="index"
                     >
@@ -122,7 +139,7 @@
             <!-- Footer -->
             <footer>
                 <i class="far fa-smile"></i>
-                <input type="text" placeholder="Scrivi un messaggio"              
+                <input type="text" placeholder="Scrivi un messaggio"
                     v-model="inputChatText"
                     @keyup.enter="submitInputText"
                 >

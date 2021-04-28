@@ -178,7 +178,10 @@ const app = new Vue ({
                 ],
             },
         ],
-        currentIndex: '0',
+        currentIndex: 0,
+        falseIndex: -1, //needed to not show active class on first landing
+        showChatToggle: false,
+        switchBell: false,
         inputChatText: '',
         findContactName: '',
         customAnswer: '',
@@ -186,6 +189,8 @@ const app = new Vue ({
     methods: {
         getContactID(index) {
             this.currentIndex = index;
+            this.falseIndex = index;
+            this.showChatToggle = true;
         },
         submitInputText() {
             // Validation
@@ -256,6 +261,13 @@ const app = new Vue ({
                 default:
                     this.customAnswer = 'Ok';
             }
+        },
+        closeChat() {
+            this.showChatToggle = false;
+            this.falseIndex = -1;
+        },
+        switchNotification() {
+            this.switchBell = !this.switchBell;
         },
     },
 });
