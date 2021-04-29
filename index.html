@@ -54,13 +54,20 @@
                 </div>
                 <div class="active-noti-wrap">
                     <h4 class="xs-hidden">Ricevi notifiche di nuovi messaggi</h4>
-                    <a class="gray-text sm-hidden" href="#">Attiva notifiche desktop</a>
+                    <a class="gray-text sm-hidden" href="#"
+                        @click="switchNotification"
+                    >{{this.changeNotificationText}} notifiche desktop
+                    </a>
                 </div>
             </section>
 
             <!-- Find new chat -->
             <section class="find-chat-wrap">
-                <button class="sm-hidden"><i class="fas fa-search"></i></button>
+                <button class="sm-hidden"
+                    @click="findContact"
+                >
+                    <i class="fas fa-search"></i>
+                </button>
                 <input type="text" class="find-chat" placeholder="Cerca o inizia una nuova chat"
                     v-model="findContactName"
                     @keyup="findContact"

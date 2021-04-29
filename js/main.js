@@ -182,6 +182,7 @@ const app = new Vue ({
         falseIndex: -1, //needed to not show active class on first landing
         showChatToggle: false,
         switchBell: false,
+        changeNotificationText: 'Attiva',
         inputChatText: '',
         findContactName: '',
         customAnswer: '',
@@ -268,6 +269,11 @@ const app = new Vue ({
         },
         switchNotification() {
             this.switchBell = !this.switchBell;
+            if (this.changeNotificationText == 'Attiva') {
+                return this.changeNotificationText = 'Disattiva';
+            }else {
+                return this.changeNotificationText = 'Attiva';
+            }
         },
     },
 });

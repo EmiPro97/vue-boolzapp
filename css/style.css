@@ -172,6 +172,10 @@ i{
     transition: background 0.7s;
 }
 
+.find-chat-wrap .find-chat{
+    max-width: 100%;
+}
+
 .find-chat-wrap button{
     font-size: 18px;
     padding: 0 37px;
@@ -183,9 +187,12 @@ i{
 
 .find-chat-wrap button:hover,
 .find-chat-wrap .find-chat:hover,
-.find-chat-wrap button:focus,
 .find-chat-wrap .find-chat:focus{
     background-color: rgba(0, 0, 0, 0.05);
+}
+
+.find-chat-wrap button:active{
+    transform: translateY(3px);
 }
 
 .find-chat-wrap .find-chat{
@@ -488,6 +495,11 @@ i{
     /* Contacts list */
     .contacts-list {
         max-height: 495px;
+    }
+
+    /* Find new chat */
+    .find-chat-wrap .find-chat::placeholder{
+        font-size: 12px;
     }
 
     /* Main scrollable */
