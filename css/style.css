@@ -7,7 +7,7 @@
     font-family: 'Lato', sans-serif;
 }
 
-body{
+#root{
     height: 100vh;
     background: linear-gradient(to bottom, #128C7E 15%, #d7dbd7 15%, #d7dbd7 100%);
     display: flex;
@@ -111,6 +111,53 @@ i{
 }
 
 /********************/
+/* Dark-menu */
+.contacts-bar .dark-menu{
+    position: relative;
+}
+
+.contacts-bar .dark-dropdown{
+    position: absolute;
+    top: 28px;
+    right: 12px;
+    width: 100px;
+    height: 80px;
+    align-items: flex-start;
+    border-radius: 5px;
+    background: #6ac1a5;
+    z-index: 1;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.301));
+}
+
+.contacts-bar .dark-dropdown::after{
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: '\f041';
+    color: #6ac1a5;
+    position: absolute;
+    font-size: 19px;
+    transform: rotate(224deg);
+    right: -1px;
+    top: -5px;
+    z-index: -1;
+}
+
+.contacts-bar .dark-dropdown li{
+    width: 100%;
+    padding: 5px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.5s,
+                color 0.5s;
+}
+
+.contacts-bar .dark-dropdown li:hover{
+    background: #202122;
+    color: #fff;
+}
+
+/********************/
 /* Notification bar */
 .notification-bar{
     background: #8edafc;
@@ -164,12 +211,12 @@ i{
 
 .find-chat-wrap button,
 .find-chat-wrap .find-chat{
-    border: none;
     outline: none;
     line-height: 40px;
     background-color: #fff;
     border: 2px solid #f5f5f5;
-    transition: background 0.7s;
+    transition: background 0.7s,
+                box-shadow 0.7s;
 }
 
 .find-chat-wrap .find-chat{
@@ -437,6 +484,136 @@ i{
 
 /**************************************************/
 /**************************************************/
+/* DARK MODE */
+#root.dark{
+    background: linear-gradient(to bottom, #075E54 15%, #0f0e17 15%, #0f0e17 100%);
+    color: #f0e7e7;
+}
+
+/* Layout */
+.container.dark{
+    background-color: #202122;
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.1);
+}
+
+/* Text */
+.gray-text.dark{
+    color: #dce1e2;
+}
+
+input.dark{
+    color: #fff;
+}
+
+/* Header */
+.container .header.dark{
+    background: #292d2e;
+}
+
+/* Notification bar */
+.notification-bar.dark{
+    background: #c29002;
+}
+
+.notification-bar .img-wrap i.dark{
+    color: #c29002;
+}
+
+/* Find new chat */
+.find-chat-wrap.dark{
+    background: #202122;
+}
+
+.find-chat-wrap button.dark,
+.find-chat-wrap .find-chat.dark{
+    background-color: #2c3333;
+    border: 1px solid #000;
+}
+
+.find-chat-wrap button.dark{
+    border-right: none;
+}
+
+.find-chat-wrap .find-chat.dark{
+    border-left: none;
+}
+
+.find-chat-wrap button.dark:hover,
+.find-chat-wrap .find-chat.dark:hover,
+.find-chat-wrap .find-chat.dark:focus{
+    background-color: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 2px #fff;
+}
+
+/* Contacts */
+.contacts-list .contact.dark{
+    border-color:#000;
+}
+
+.contacts-list .contact.dark:hover{
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.contacts-list .contact.active.dark{  /*Managed in VueJS*/
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Dark-menu */
+.contacts-bar .dark-dropdown.dark{
+    background: #075e54;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.301));
+}
+
+.contacts-bar .dark-dropdown.dark::after{
+    color: #075e54;
+}
+
+.contacts-bar .dark-dropdown li.dark:hover{
+    background: #e9ebee;
+    color: #000;
+}
+
+/* Landing Page */
+.landing-page .layover.dark{
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Chat */
+.chat-wrap.dark{
+    border-color: #000;
+}
+
+/* Main */
+.chat-wrap main.dark{
+    background-image: url(../img/mine-dark.jpg);
+    background-size: contain;
+}
+
+.chat-wrap main .sent-wrap .sent.dark{
+    background: #06605e;
+}
+
+.chat-wrap main .received-wrap .received.dark{
+    display: inline-block;
+    background: #242d2f;
+}
+
+/* Footer */
+.chat-wrap footer.dark{
+    background: #1a2022;
+}
+
+.chat-wrap footer input.dark{
+   background-color: #303738;
+}
+
+.chat-wrap footer input.dark:hover,
+.chat-wrap footer input.dark:focus{
+    box-shadow: 0 0 2px #fff;
+}
+
+/**************************************************/
+/**************************************************/
 /* RESPONSIVE */
 
 /* < 1200px */
@@ -473,6 +650,11 @@ i{
     /* Contacts list */
     .contacts-list {
         max-height: 570px;
+    }
+
+    /* Chat */
+    .chat-wrap main.dark{
+        background-size: cover;
     }
 
     /* Footer */
@@ -593,6 +775,11 @@ i{
         min-width: 20%;
     }
 
+    /* Dark menu */
+    .contacts-bar .dark-dropdown {
+        width: 50px;
+    }
+
     /* Notification bar */
     .xs-justify-center{
         justify-content: center;
@@ -610,3 +797,4 @@ i{
         max-width: 80%;
     }
 }
+

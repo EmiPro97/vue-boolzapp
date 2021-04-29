@@ -186,6 +186,9 @@ const app = new Vue ({
         inputChatText: '',
         findContactName: '',
         customAnswer: '',
+        hover: false,
+        darkMode: false,
+        textMode: 'Dark',
     },
     methods: {
         getContactID(index) {
@@ -273,6 +276,14 @@ const app = new Vue ({
                 return this.changeNotificationText = 'Disattiva';
             }else {
                 return this.changeNotificationText = 'Attiva';
+            }
+        },
+        changeMode() {
+            this.darkMode = !this.darkMode;
+            if (this.textMode == 'Dark') {
+                return this.textMode = 'Light';
+            }else {
+                return this.textMode = 'Dark';
             }
         },
     },
