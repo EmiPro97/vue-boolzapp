@@ -178,6 +178,7 @@ const app = new Vue ({
                 ],
             },
         ],
+        emoticons: ["✌","😂","😝","😁","😱","👉","🙌","🍻","🔥","🌈","☀","🎈","🌹","💄","🎀","⚽","🎾","🏁","😡","👿","🐻","🐶","🐬","🐟","🍀","👀","🚗","🍎","💝","💙","👌","❤","😍","😉","😓","😳","💪","💩","🍸","🔑","💖","🌟","🎉","🌺","🎶","👠","🏈","⚾","🏆","👽","💀","🐵","🐮","🐩","🐎","💣","👃","👂","🍓","💘","💜","👊","💋","😘","😜","😵","🙏","👋","🚽","💃","💎","🚀","🌙","🎁","⛄","🌊","⛵","🏀","🎱","💰","👶","👸","🐰","🐷","🐍","🐫","🔫","👄","🚲","🍉","💛","💚"],
         currentIndex: 0,
         falseIndex: -1, //needed to not show active class on first landing
         showChatToggle: false,
@@ -189,6 +190,7 @@ const app = new Vue ({
         hover: false,
         darkMode: false,
         textMode: 'Dark',
+        showEmoji: false,
     },
     methods: {
         getContactID(index) {
@@ -285,6 +287,12 @@ const app = new Vue ({
             }else {
                 return this.textMode = 'Dark';
             }
+        },
+        showEmoticon() {
+            this.showEmoji = !this.showEmoji;
+        },
+        selectEmoji(index) {
+            this.inputChatText += this.emoticons[index];
         },
     },
 });

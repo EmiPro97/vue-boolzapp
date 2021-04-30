@@ -151,8 +151,22 @@
                     </div>
                 </main>
                 <!-- Footer -->
-                <footer :class="{dark: darkMode}">
-                    <i class="far fa-smile"></i>
+                <footer class="emoticon-menu" :class="{dark: darkMode}">
+                    <i class="far fa-smile"
+                        @click="showEmoticon"
+                    ></i>
+                    <div class="emoticon-dropdown" v-show="showEmoji" :class="{dark: darkMode}">
+                        <div class="emoticon-title">
+                            <h6>Emoji</h6>
+                        </div>
+                        <div class="emoji-wrap">
+                            <ul class="emoji-list">
+                                <li v-for="(emoticon,index) in emoticons"
+                                    @click="selectEmoji(index)"
+                                >{{emoticon}}</li>
+                            </ul>
+                        </div>
+                    </div>
                     <input type="text" placeholder="Scrivi un messaggio"
                         v-model="inputChatText"
                         @keyup.enter="submitInputText"

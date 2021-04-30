@@ -264,6 +264,21 @@ i{
     flex-direction: column;
     align-items: flex-start;
     overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #6d6d6d62 transparent;
+}
+
+.contacts-list::-webkit-scrollbar{
+    width: 5px;
+}
+
+.contacts-list::-webkit-scrollbar-thumb{
+    background-color: #6d6d6d62;
+    border: none;
+}
+
+.contacts-list::-webkit-scrollbar-track{
+    background: transparent;
 }
 
 .contacts-list .contact{
@@ -402,6 +417,21 @@ i{
     padding: 55px 100px 0 100px;
     height: 100%;
     overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #6d6d6d62 transparent;
+}
+
+.chat-wrap main .main-scrollable::-webkit-scrollbar{
+    width: 5px;
+}
+
+.chat-wrap main .main-scrollable::-webkit-scrollbar-thumb{
+    background-color: #6d6d6d62;
+    border: none;
+}
+
+.chat-wrap main .main-scrollable::-webkit-scrollbar-track{
+    background: transparent;
 }
 
 .chat-wrap main .main-scrollable > :last-child{
@@ -480,6 +510,75 @@ i{
 .chat-wrap footer input:hover,
 .chat-wrap footer input:focus{
     box-shadow: 0 0 2px rgba(0,0,0, 0.1);
+}
+
+/********************/
+/* Emoticon-menu */
+.emoticon-menu{
+    position: relative;
+}
+
+.emoticon-menu .emoticon-dropdown{
+    position: absolute;
+    bottom: 75px;
+    left: 10px;
+    flex-direction: column;
+    max-width: 500px;
+    max-height: 200px;
+    border-radius: 5px;
+    background: #6ac1a5;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
+}
+
+.emoticon-menu .emoticon-dropdown::after{
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: '\f041';
+    color: #6ac1a5;
+    position: absolute;
+    font-size: 19px;
+    transform: rotate(10deg);
+    bottom: -4px;
+    left: 3px;
+    z-index: -1;
+}
+
+.emoticon-menu .emoticon-dropdown .emoticon-title{
+    font-size: 20px;
+    padding: 10px 20px;
+}
+
+.emoticon-menu .emoticon-dropdown .emoji-wrap{
+    overflow-y: auto;
+    height: calc(200px - 36px);
+    scrollbar-width: thin;
+    scrollbar-color: #6d6d6d62 transparent;
+}
+
+.emoticon-menu .emoticon-dropdown .emoji-wrap::-webkit-scrollbar{
+    width: 5px;
+}
+
+.emoticon-menu .emoticon-dropdown .emoji-wrap::-webkit-scrollbar-thumb{
+    background-color: #6d6d6d62;
+    border: none;
+}
+
+.emoticon-menu .emoticon-dropdown .emoji-wrap::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+.emoticon-menu .emoticon-dropdown .emoji-wrap .emoji-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.emoticon-menu .emoticon-dropdown li{
+    margin: 5px;
+    font-size: 18px;
+    list-style: none;
+    cursor: pointer;
 }
 
 /**************************************************/
@@ -610,6 +709,15 @@ input.dark{
 .chat-wrap footer input.dark:hover,
 .chat-wrap footer input.dark:focus{
     box-shadow: 0 0 2px #fff;
+}
+
+/* Emoticon menu */
+.emoticon-menu .emoticon-dropdown.dark{
+    background: #06605e;
+}
+
+.emoticon-menu .emoticon-dropdown.dark::after{
+    color: #06605e;
 }
 
 /**************************************************/
